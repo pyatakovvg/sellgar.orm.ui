@@ -1,5 +1,5 @@
-import { CompoundKeyPath, createCompoundKeyPath, createKeyPath, SimpleKeyPath } from '../index.ts';
-import type { KeyPath, KeyPathValue } from '../index.ts';
+import { CompoundKeyPath, createCompoundKeyPath, createKeyPath, SimpleKeyPath } from '../key-path.ts';
+import type { KeyPath, KeyPathValue } from '../key-path.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -89,7 +89,7 @@ describe('KeyPath', () => {
     const dynamicPath: string = 'id';
     const dynamicPaths: string[] = ['chatId', 'position'];
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error boolean не входит в StorageKey.
       simple('messages', 'delivered');
       // @ts-expect-error произвольный object не входит в StorageKey.
@@ -110,7 +110,8 @@ describe('KeyPath', () => {
       compound('messages', ['chatId', 'delivered']);
       // @ts-expect-error dynamic array не доказывает tuple shape и field paths.
       compound('messages', dynamicPaths);
-    }
+    };
+    void assertTypeErrors;
 
     expect([dynamicPath, dynamicPaths]).toHaveLength(2);
   });

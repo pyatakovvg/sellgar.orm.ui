@@ -1,8 +1,8 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { openConnection } from '../../connection/index.ts';
-import { createCompiledSchema } from '../../schema/index.ts';
-import { Transaction } from '../index.ts';
+import { openConnection } from '../../connection';
+import { createCompiledSchema } from '../../schema';
+import { Transaction } from '../transaction.ts';
 
 interface RequestHarness<Result> {
   readonly request: IDBRequest<Result>;

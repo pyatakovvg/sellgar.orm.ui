@@ -1,7 +1,7 @@
-import { Expression } from '../expression/index.ts';
-import type { Direction } from '../selection/index.ts';
-import { Range } from '../range/index.ts';
-import type { SchemaTable, TableRecord } from '../schema/index.ts';
+import { Expression } from '../expression';
+import type { Direction } from '../selection';
+import { Range } from '../range';
+import type { SchemaTable, TableRecord } from '../schema';
 
 type Limit = Readonly<{
   limit?: number;

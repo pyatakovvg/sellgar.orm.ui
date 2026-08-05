@@ -1,9 +1,9 @@
-import { definitionOf as definitionOfRange, Range } from '../range/index.ts';
-import type { Boundary } from '../range/index.ts';
-import { Field } from '../schema/index.ts';
+import { definitionOf as definitionOfRange, Range } from '../range';
+import type { Boundary } from '../range';
+import { Field } from '../schema';
 import { Value } from './value.ts';
 import type { Input } from './value.ts';
-import type { StorageKey } from '../key/index.ts';
+import type { StorageKey } from '../key';
 
 export type ComparisonOperator = 'eq' | 'gt' | 'gte' | 'lt' | 'lte' | 'between' | 'one-of' | 'is-null' | 'is-missing';
 export type LogicalOperator = 'and' | 'or' | 'not';

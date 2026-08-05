@@ -1,5 +1,5 @@
-import { createField, Field } from '../index.ts';
-import type { FieldPath, FieldValue } from '../index.ts';
+import { createField, Field } from '../field.ts';
+import type { FieldPath, FieldValue } from '../field.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -67,14 +67,15 @@ describe('Field', () => {
     const field = createField<MessageRecord>();
     const dynamicPath: string = 'author.id';
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error field отсутствует в MessageRecord.
       field('messages', 'unknown');
       // @ts-expect-error nested field отсутствует в MessageRecord.
       field('messages', 'author.unknown');
       // @ts-expect-error dynamic string не доказывает корректность field path.
       field('messages', dynamicPath);
-    }
+    };
+    void assertTypeErrors;
 
     expect(dynamicPath).toBe('author.id');
   });

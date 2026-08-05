@@ -1,13 +1,15 @@
 import {
-  createAssignedRecordPrimaryKey,
-  createAutoIncrementRecordPrimaryKey,
   createCompoundKeyPath,
   createKeyPath,
+} from '../key-path.ts';
+import {
+  createAssignedRecordPrimaryKey,
+  createAutoIncrementRecordPrimaryKey,
   ExternalPrimaryKey,
   externalKey,
   RecordPrimaryKey,
-} from '../index.ts';
-import type { PrimaryKey, PrimaryKeyValue } from '../index.ts';
+} from '../primary-key.ts';
+import type { PrimaryKey, PrimaryKeyValue } from '../primary-key.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -104,7 +106,7 @@ describe('PrimaryKey', () => {
     const compound = compoundPath('messages', ['chatId', 'position']);
     const nullableCompound = compoundPath('messages', ['chatId', 'optionalSequence']);
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error record primary key должен присутствовать в persisted record.
       createAssignedRecordPrimaryKey(optionalId);
       // @ts-expect-error null не является допустимым persisted primary key.
@@ -117,13 +119,14 @@ describe('PrimaryKey', () => {
       createAutoIncrementRecordPrimaryKey(compound);
       // @ts-expect-error generated record key должен быть non-nullable.
       createAutoIncrementRecordPrimaryKey(optionalSequence);
-    }
+    };
+    void assertTypeErrors;
 
     expect([optionalId, nullableId, optionalSequence, stringId, compound]).toHaveLength(5);
   });
 
   it('требует явный допустимый type для assigned external key', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error assigned external key type невозможно вывести без generic.
       externalKey();
       // @ts-expect-error boolean не является browser storage key.
@@ -132,7 +135,8 @@ describe('PrimaryKey', () => {
       externalKey<never>();
       // @ts-expect-error assigned является default и не задаётся runtime option.
       externalKey({ generation: 'assigned' });
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

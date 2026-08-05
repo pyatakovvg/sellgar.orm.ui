@@ -1,7 +1,8 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { createCompiledSchema, installSchema } from '../index.ts';
-import type { CompiledSchema } from '../index.ts';
+import { createCompiledSchema } from '../compiled-schema.ts';
+import type { CompiledSchema } from '../compiled-schema.ts';
+import { installSchema } from '../schema-installer.ts';
 
 const compiledSchema = createCompiledSchema({
   name: 'schema-installer-test',

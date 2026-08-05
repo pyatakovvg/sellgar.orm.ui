@@ -1,5 +1,6 @@
-import { table } from '../../schema/index.ts';
-import { and, definitionOf, eq, Expression, gt, isMissing, not, or } from '../index.ts';
+import { table } from '../../schema';
+import { definitionOf, Expression } from '../expression.ts';
+import { and, eq, gt, isMissing, not, or } from '../operators.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -39,7 +40,7 @@ describe('logical Expression types', () => {
   });
 
   it('требует правильную arity и одну table compile-time', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       const local = eq(messages.field('id'), 'message-1');
       const foreign = eq(archive.field('id'), 'message-1');
       const incompatibleRecord = eq(incompatibleMessages.field('extra'), 'value');
@@ -60,7 +61,8 @@ describe('logical Expression types', () => {
       or(foreign, local);
       // @ts-expect-error один table name не делает разные record contracts совместимыми.
       and(local, incompatibleRecord);
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

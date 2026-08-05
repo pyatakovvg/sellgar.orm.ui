@@ -1,5 +1,8 @@
-import { externalKey, Field, table, Table } from '../index.ts';
-import type { IndexValue, SchemaTable, TableKey, TableRecord } from '../index.ts';
+import { Field } from '../field.ts';
+import { externalKey } from '../primary-key.ts';
+import type { IndexValue } from '../table-index.ts';
+import { table, Table } from '../table.ts';
+import type { SchemaTable, TableKey, TableRecord } from '../table.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -134,7 +137,7 @@ describe('Table', () => {
   });
 
   it('отклоняет invalid primary keys и indexes compile-time', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error root record не может быть массивом из-за tuple semantics bulk input.
       table('array-record').record<readonly string[]>();
       // @ts-expect-error assigned record primary key должен быть non-nullable.
@@ -191,7 +194,8 @@ describe('Table', () => {
             },
           ],
         });
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });
@@ -203,12 +207,13 @@ describe('Table', () => {
     });
     const dynamicPath: string = 'author.id';
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error field отсутствует в MessageRecord.
       messages.field('unknown');
       // @ts-expect-error dynamic string не доказывает корректность field path.
       messages.field(dynamicPath);
-    }
+    };
+    void assertTypeErrors;
 
     expect(dynamicPath).toBe('author.id');
   });

@@ -1,5 +1,5 @@
-import type { CompiledSchema } from '../schema/index.ts';
-import { installSchema } from '../schema/index.ts';
+import type { CompiledSchema } from '../schema';
+import { installSchema } from '../schema';
 
 import { NativeConnection } from './native-connection.ts';
 
@@ -13,11 +13,13 @@ export const openConnection = (factory: IDBFactory, schema: CompiledSchema): Pro
     const request = factory.open(schema.name, schema.version);
 
     request.addEventListener('upgradeneeded', (event) => {
-      try {
-        if (event.oldVersion !== 0) {
-          throw createUnsupportedTransitionError(event.oldVersion, event.newVersion);
-        }
+      if (event.oldVersion !== 0) {
+        request.transaction?.abort();
+        reject(createUnsupportedTransitionError(event.oldVersion, event.newVersion));
+        return;
+      }
 
+      try {
         installSchema(request.result, schema);
       } catch (error) {
         request.transaction?.abort();

@@ -1,8 +1,8 @@
-import type { Delete, Insert, Update, Upsert } from '../mutation/index.ts';
-import type { Select } from '../select/index.ts';
-import { Schema } from '../schema/index.ts';
-import type { SchemaTableUnion } from '../schema/index.ts';
-import type { TransactionInterface } from '../transaction/index.ts';
+import type { Delete, Insert, Update, Upsert } from '../mutation';
+import type { Select } from '../select';
+import { Schema } from '../schema';
+import type { SchemaTableUnion } from '../schema';
+import type { TransactionInterface } from '../transaction';
 
 export abstract class ClientInterface<SchemaType extends Schema> {
   public abstract open(schema: SchemaType): Promise<void>;

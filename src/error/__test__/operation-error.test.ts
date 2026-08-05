@@ -1,5 +1,8 @@
-import { ClientError, ConfigurationError, OperationError, UnsupportedOperationError } from '../index.ts';
-import type { Operation } from '../index.ts';
+import { ClientError } from '../client-error.ts';
+import { ConfigurationError } from '../configuration-error.ts';
+import { OperationError } from '../operation-error.ts';
+import type { Operation } from '../operation-error.ts';
+import { UnsupportedOperationError } from '../unsupported-operation-error.ts';
 
 describe('OperationError', () => {
   it('задаёт стабильный configuration code и logical operation', () => {
@@ -85,12 +88,13 @@ describe('OperationError', () => {
   });
 
   it('ограничивает operation metadata утверждёнными logical boundaries', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error physical driver method не является logical ORM operation.
       new UnsupportedOperationError('physical.open');
       // @ts-expect-error future operation добавляется только вместе с реальным API.
       new UnsupportedOperationError('record.put');
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

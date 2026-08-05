@@ -1,4 +1,4 @@
-import { Transaction } from '../index.ts';
+import { Transaction } from '../transaction.ts';
 
 interface CursorHarness {
   readonly continue: ReturnType<typeof vi.fn>;

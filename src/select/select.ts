@@ -1,10 +1,10 @@
-import { eq, Expression } from '../expression/index.ts';
-import type { EqualityValue } from '../expression/index.ts';
-import type { SelectOperation } from '../error/index.ts';
-import { materialize } from '../schema/index.ts';
-import type { Field, SchemaTable, TableModel, TableRecord } from '../schema/index.ts';
-import { Selection, sourceOf } from '../selection/index.ts';
-import type { Direction } from '../selection/index.ts';
+import { eq, Expression } from '../expression';
+import type { EqualityValue } from '../expression';
+import type { SelectOperation } from '../error';
+import { materialize } from '../schema';
+import type { Field, SchemaTable, TableModel, TableRecord } from '../schema';
+import { Selection, sourceOf } from '../selection';
+import type { Direction } from '../selection';
 
 export type SelectOptions = Readonly<{
   scan: 'allow';

@@ -1,4 +1,4 @@
-import { createIndexName } from '../index.ts';
+import { createIndexName } from '../index-name.ts';
 
 describe('createIndexName', () => {
   it('кодирует simple, compound и options в canonical JSON tuple', () => {

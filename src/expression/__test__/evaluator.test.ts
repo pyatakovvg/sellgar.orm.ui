@@ -1,20 +1,19 @@
-import { table } from '../../schema/index.ts';
+import { table } from '../../schema';
+import { Expression, matches } from '../expression.ts';
 import {
   and,
   between,
   eq,
-  Expression,
   gt,
   gte,
   isMissing,
   isNull,
   lt,
   lte,
-  matches,
   not,
   oneOf,
   or,
-} from '../index.ts';
+} from '../operators.ts';
 import type { Input } from '../value.ts';
 
 interface MessageRecord {
@@ -53,12 +52,13 @@ describe('Expression record evaluator types', () => {
 
     expectTypeOf(matches(expression, record)).toEqualTypeOf<boolean>();
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error record не соответствует Expression RecordType.
       matches(expression, {
         id: 'message-1',
       });
-    }
+    };
+    void assertTypeErrors;
   });
 });
 

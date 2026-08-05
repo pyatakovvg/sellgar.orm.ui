@@ -1,5 +1,7 @@
-import { MutationError, OperationError } from '../index.ts';
-import type { MutationErrorCode, MutationOperation, Operation } from '../index.ts';
+import { MutationError } from '../mutation-error.ts';
+import type { MutationErrorCode } from '../mutation-error.ts';
+import { OperationError } from '../operation-error.ts';
+import type { MutationOperation, Operation } from '../operation-error.ts';
 
 describe('MutationError', () => {
   it('задаёт стабильные ошибки изменения данных', () => {
@@ -40,14 +42,15 @@ describe('MutationError', () => {
       'delete.execute',
     ];
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       const cause = new Error('physical failure');
 
       // @ts-expect-error чтение не является mutation operation.
       new MutationError('operation-failed', 'select.getRawOne', { cause });
       // @ts-expect-error public client method не является выполненной mutation.
       new MutationError('operation-failed', 'client.insert', { cause });
-    }
+    };
+    void assertTypeErrors;
 
     expect(operations).toHaveLength(4);
   });

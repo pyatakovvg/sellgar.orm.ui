@@ -1,7 +1,7 @@
-import { Range } from '../range/index.ts';
-import type { BetweenOptions, CompatibleKey } from '../range/index.ts';
-import { Field } from '../schema/index.ts';
-import type { StorageKey } from '../key/index.ts';
+import { Range } from '../range';
+import type { BetweenOptions, CompatibleKey } from '../range';
+import { Field } from '../schema';
+import type { StorageKey } from '../key';
 import { createExpression, createLogicalExpression, Expression } from './expression.ts';
 import { Value } from './value.ts';
 import type { Input } from './value.ts';

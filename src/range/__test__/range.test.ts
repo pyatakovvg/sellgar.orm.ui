@@ -1,8 +1,8 @@
 import { IDBKeyRange } from 'fake-indexeddb';
 
-import { definitionOf, Range, withinPrefix } from '../index.ts';
-import type { BetweenOptions, PrefixKey } from '../index.ts';
-import type { StorageKey } from '../../key/index.ts';
+import { definitionOf, Range, withinPrefix } from '../range.ts';
+import type { BetweenOptions, PrefixKey } from '../range.ts';
+import type { StorageKey } from '../../key';
 
 describe('Range types', () => {
   it('сохраняет storage-key type во всех factories', () => {
@@ -40,7 +40,7 @@ describe('Range types', () => {
   });
 
   it('отклоняет несовместимые compile-time key types', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       const strings = Range.between('a', 'z');
       const numbers = Range.anyOf([1, 2]);
       const prefix = Range.prefix('message:');
@@ -74,7 +74,8 @@ describe('Range types', () => {
       expect(invalidPrefix).toBe(1);
       expect(invalidOptions).toBeDefined();
       expect(forged).toBeDefined();
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

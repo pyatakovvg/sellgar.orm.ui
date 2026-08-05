@@ -1,7 +1,8 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { createCompiledSchema } from '../../schema/index.ts';
-import { NativeConnection, openConnection } from '../index.ts';
+import { createCompiledSchema } from '../../schema';
+import { NativeConnection } from '../native-connection.ts';
+import { openConnection } from '../open.ts';
 
 interface NativeHarness {
   readonly close: ReturnType<typeof vi.fn>;
@@ -151,10 +152,11 @@ describe('NativeConnection transaction start', () => {
     expect(transaction.store('records')).toBeDefined();
     expect(transaction.store('logs')).toBeDefined();
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error store отсутствует в inferred fixed scope.
       transaction.store('missing');
-    }
+    };
+    void assertTypeErrors;
   });
 
   it('отклоняет empty internal scope до browser API', () => {

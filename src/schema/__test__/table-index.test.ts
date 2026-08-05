@@ -1,5 +1,5 @@
-import { createIndex, Index } from '../index.ts';
-import type { IndexValue, TableIndex } from '../index.ts';
+import { createIndex, Index } from '../table-index.ts';
+import type { IndexValue, TableIndex } from '../table-index.ts';
 
 interface MessageRecord {
   readonly chatId: string;
@@ -78,7 +78,7 @@ describe('Index', () => {
     const index = createIndex<MessageRecord>();
     const dynamicMultiEntry: boolean = true;
 
-    if (false) {
+    const assertTypeErrors = (dynamicMultiEntry: boolean): void => {
       // @ts-expect-error boolean field не является storage key.
       index('messages', { keyPath: 'delivered' });
       // @ts-expect-error произвольный object не является storage key.
@@ -95,7 +95,8 @@ describe('Index', () => {
         keyPath: 'tags',
         multiEntry: dynamicMultiEntry,
       });
-    }
+    };
+    void assertTypeErrors;
 
     expect(dynamicMultiEntry).toBe(true);
   });

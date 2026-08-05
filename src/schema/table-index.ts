@@ -1,7 +1,7 @@
 import { createKeyPathValue, SimpleKeyPath } from './key-path.ts';
 import type { CheckedKeyPathInput, KeyPath, KeyPathFromInput, KeyPathInput, KeyPathValue } from './key-path.ts';
 import type { FieldValue } from './field.ts';
-import type { StorageKey } from '../key/index.ts';
+import type { StorageKey } from '../key';
 
 export interface IndexInput {
   readonly keyPath: KeyPathInput;

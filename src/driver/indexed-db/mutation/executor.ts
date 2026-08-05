@@ -1,15 +1,15 @@
-import type { StorageKey } from '../../../key/index.ts';
-import type { UpdateValues } from '../../../mutation/index.ts';
-import { plan } from '../../../planner/index.ts';
-import { RecordPrimaryKey } from '../../../schema/index.ts';
-import type { SchemaTable, TableRecord } from '../../../schema/index.ts';
-import { sourceOf as selectionSource } from '../../../selection/index.ts';
-import type { Selection } from '../../../selection/index.ts';
-import { NativeConnection } from '../connection/index.ts';
-import { mapMutationError } from '../error/index.ts';
-import { Executor as SelectionExecutor } from '../plan/index.ts';
-import type { Candidate } from '../plan/index.ts';
-import type { Transaction } from '../transaction/index.ts';
+import type { StorageKey } from '../../../key';
+import type { UpdateValues } from '../../../mutation';
+import { plan } from '../../../planner';
+import { RecordPrimaryKey } from '../../../schema';
+import type { SchemaTable, TableRecord } from '../../../schema';
+import { sourceOf as selectionSource } from '../../../selection';
+import type { Selection } from '../../../selection';
+import { NativeConnection } from '../connection';
+import { mapMutationError } from '../error';
+import { Executor as SelectionExecutor } from '../plan';
+import type { Candidate } from '../plan';
+import type { Transaction } from '../transaction';
 
 const asNativeKey = (key: StorageKey): IDBValidKey => key as IDBValidKey;
 

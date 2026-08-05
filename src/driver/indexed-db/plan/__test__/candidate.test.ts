@@ -1,5 +1,5 @@
-import { candidate, deduplicate, intersect } from '../index.ts';
-import type { Candidate } from '../index.ts';
+import { candidate, deduplicate, intersect } from '../candidate.ts';
+import type { Candidate } from '../candidate.ts';
 
 interface RecordValue {
   readonly id: string;

@@ -1,13 +1,13 @@
-import { QueryError } from '../error/index.ts';
-import type { QueryOperation } from '../error/index.ts';
-import { definitionOf as definitionOfExpression } from '../expression/index.ts';
-import type { Definition as ExpressionDefinition } from '../expression/index.ts';
-import type { StorageKey } from '../key/index.ts';
-import { filterOf, orderOf, Selection, sourceOf } from '../selection/index.ts';
-import type { Order } from '../selection/index.ts';
-import { Range, withinPrefix } from '../range/index.ts';
-import { RecordPrimaryKey, SimpleKeyPath } from '../schema/index.ts';
-import type { KeyPath, SchemaTable, TableIndex } from '../schema/index.ts';
+import { QueryError } from '../error';
+import type { QueryOperation } from '../error';
+import { definitionOf as definitionOfExpression } from '../expression';
+import type { Definition as ExpressionDefinition } from '../expression';
+import type { StorageKey } from '../key';
+import { filterOf, orderOf, Selection, sourceOf } from '../selection';
+import type { Order } from '../selection';
+import { Range, withinPrefix } from '../range';
+import { RecordPrimaryKey, SimpleKeyPath } from '../schema';
+import type { KeyPath, SchemaTable, TableIndex } from '../schema';
 import type { Plan } from './plan.ts';
 import type { ScanPolicy } from './planner.ts';
 

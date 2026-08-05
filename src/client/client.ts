@@ -1,12 +1,12 @@
 import { Injectable } from '@sellgar/app';
 
-import { NativeConnection, openConnection } from '../driver/indexed-db/connection/index.ts';
-import { Executor as MutationExecutor, Writer } from '../driver/indexed-db/mutation/index.ts';
-import { Executor } from '../driver/indexed-db/plan/index.ts';
-import { compileSchema } from '../driver/indexed-db/schema/index.ts';
-import { ClientError, TransactionError } from '../error/index.ts';
-import type { ClientOperation, MutationOperation, SelectOperation } from '../error/index.ts';
-import { createDelete, createInsert, createUpdate, createUpsert, normalizeWrite } from '../mutation/index.ts';
+import { NativeConnection, openConnection } from '../driver/indexed-db/connection';
+import { Executor as MutationExecutor, Writer } from '../driver/indexed-db/mutation';
+import { Executor } from '../driver/indexed-db/plan';
+import { compileSchema } from '../driver/indexed-db/schema';
+import { ClientError, TransactionError } from '../error';
+import type { ClientOperation, MutationOperation, SelectOperation } from '../error';
+import { createDelete, createInsert, createUpdate, createUpsert, normalizeWrite } from '../mutation';
 import type {
   Delete,
   Insert,
@@ -17,18 +17,18 @@ import type {
   Upsert,
   UpsertArguments,
   UpsertManyInput,
-} from '../mutation/index.ts';
-import { plan } from '../planner/index.ts';
-import type { ScanPolicy } from '../planner/index.ts';
-import { createSelect } from '../select/index.ts';
-import type { Select, SelectOptions } from '../select/index.ts';
-import { selection, sourceOf } from '../selection/index.ts';
-import type { Selection } from '../selection/index.ts';
-import { Schema } from '../schema/index.ts';
-import type { SchemaTable, SchemaTableUnion, TableKey } from '../schema/index.ts';
-import type { TableRecord } from '../schema/index.ts';
-import { Transaction } from '../transaction/index.ts';
-import type { TransactionInterface } from '../transaction/index.ts';
+} from '../mutation';
+import { plan } from '../planner';
+import type { ScanPolicy } from '../planner';
+import { createSelect } from '../select';
+import type { Select, SelectOptions } from '../select';
+import { selection, sourceOf } from '../selection';
+import type { Selection } from '../selection';
+import { Schema } from '../schema';
+import type { SchemaTable, SchemaTableUnion, TableKey } from '../schema';
+import type { TableRecord } from '../schema';
+import { Transaction } from '../transaction';
+import type { TransactionInterface } from '../transaction';
 
 import { ClientInterface } from './client.interface.ts';
 
@@ -234,17 +234,17 @@ export class Client<SchemaType extends Schema = Schema> implements ClientInterfa
       this.synchronizeClosedState();
 
       if (this.state === 'closed') {
-        throw new ClientError('closed', 'client.transaction');
+        return Promise.reject(new ClientError('closed', 'client.transaction'));
       }
 
       if (this.state !== 'open' || this.schemaValue === undefined || this.connection === undefined) {
-        throw new ClientError('not-open', 'client.transaction');
+        return Promise.reject(new ClientError('not-open', 'client.transaction'));
       }
 
       const scope: Scope[number][] = Array.isArray(tables) ? [...tables] : [];
 
       if (!this.isTransactionScopeValid(scope)) {
-        throw new TransactionError('invalid-scope', 'client.transaction');
+        return Promise.reject(new TransactionError('invalid-scope', 'client.transaction'));
       }
 
       const names: [string, ...string[]] = [scope[0].name, ...scope.slice(1).map((table) => table.name)];
@@ -253,9 +253,11 @@ export class Client<SchemaType extends Schema = Schema> implements ClientInterfa
       try {
         physical = this.connection.transaction(names, 'readwrite');
       } catch (cause) {
-        throw new TransactionError('start-failed', 'client.transaction', {
-          cause,
-        });
+        return Promise.reject(
+          new TransactionError('start-failed', 'client.transaction', {
+            cause,
+          }),
+        );
       }
 
       return new Transaction<Scope[number]>(scope, physical, this.keyRange!).run(callback);

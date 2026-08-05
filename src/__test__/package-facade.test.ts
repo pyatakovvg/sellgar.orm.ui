@@ -7,8 +7,8 @@ import {
   Upsert,
   schema,
   table,
-} from '../index.ts';
-import type { TableModel, TableRecord } from '../schema/index.ts';
+} from '@sellgar/orm';
+import type { TableModel, TableRecord } from '../schema';
 
 class Message {
   readonly id!: string;
@@ -45,7 +45,7 @@ describe('package facade', () => {
   });
 
   it('не сохраняет старый публичный API', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       const client = null as unknown as ClientInterface<typeof databaseSchema>;
 
       // @ts-expect-error query удалён в пользу select.
@@ -58,7 +58,8 @@ describe('package facade', () => {
       client.put(messages);
       // @ts-expect-error primary key нельзя менять через update.
       client.update(messages).set({ id: 'other-id' });
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

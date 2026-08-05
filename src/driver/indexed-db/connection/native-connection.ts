@@ -1,5 +1,5 @@
-import { Transaction } from '../transaction/index.ts';
-import type { Mode, Scope } from '../transaction/index.ts';
+import { Transaction } from '../transaction';
+import type { Mode, Scope } from '../transaction';
 
 const createEmptyScopeError = (): Error => new Error('IndexedDB transaction scope must not be empty');
 

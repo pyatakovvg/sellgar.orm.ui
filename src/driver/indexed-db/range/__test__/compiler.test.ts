@@ -1,9 +1,9 @@
 import { IDBKeyRange } from 'fake-indexeddb';
 
-import type { StorageKey } from '../../../../key/index.ts';
-import { Range, withinPrefix } from '../../../../range/index.ts';
-import { compile } from '../index.ts';
-import type { Compilation } from '../index.ts';
+import type { StorageKey } from '../../../../key';
+import { Range, withinPrefix } from '../../../../range';
+import { compile } from '../compiler.ts';
+import type { Compilation } from '../compiler.ts';
 
 const nativeRange = (compilation: Compilation): IDBKeyRange => {
   if (compilation.type !== 'range') {

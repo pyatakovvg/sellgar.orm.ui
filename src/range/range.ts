@@ -1,5 +1,5 @@
-import { Key } from '../key/index.ts';
-import type { BinaryStorageKey, StorageKey } from '../key/index.ts';
+import { Key } from '../key';
+import type { BinaryStorageKey, StorageKey } from '../key';
 
 export type Boundary = 'inclusive' | 'exclusive';
 

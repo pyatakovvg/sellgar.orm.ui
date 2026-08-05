@@ -1,8 +1,9 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { createCompiledSchema } from '../../schema/index.ts';
-import type { CompiledSchema } from '../../schema/index.ts';
-import { NativeConnection, openConnection } from '../index.ts';
+import { createCompiledSchema } from '../../schema';
+import type { CompiledSchema } from '../../schema';
+import { NativeConnection } from '../native-connection.ts';
+import { openConnection } from '../open.ts';
 
 const createSchema = (name: string): CompiledSchema =>
   createCompiledSchema({

@@ -1,14 +1,14 @@
-import { matches } from '../../../expression/index.ts';
-import type { QueryOperation } from '../../../error/index.ts';
-import type { StorageKey } from '../../../key/index.ts';
-import type { Plan } from '../../../planner/index.ts';
-import { Range } from '../../../range/index.ts';
-import type { SchemaTable, TableRecord } from '../../../schema/index.ts';
-import { NativeConnection } from '../connection/index.ts';
-import { mapQueryError } from '../error/index.ts';
-import { compile } from '../range/index.ts';
-import { compileIndex } from '../schema/index.ts';
-import type { Transaction } from '../transaction/index.ts';
+import { matches } from '../../../expression';
+import type { QueryOperation } from '../../../error';
+import type { StorageKey } from '../../../key';
+import type { Plan } from '../../../planner';
+import { Range } from '../../../range';
+import type { SchemaTable, TableRecord } from '../../../schema';
+import { NativeConnection } from '../connection';
+import { mapQueryError } from '../error';
+import { compile } from '../range';
+import { compileIndex } from '../schema';
+import type { Transaction } from '../transaction';
 
 import { candidate, deduplicate, intersect } from './candidate.ts';
 import type { Candidate } from './candidate.ts';

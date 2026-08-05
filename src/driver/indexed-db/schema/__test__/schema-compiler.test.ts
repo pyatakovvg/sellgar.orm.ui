@@ -1,5 +1,5 @@
-import { externalKey, schema, table } from '../../../../schema/index.ts';
-import { compileSchema } from '../index.ts';
+import { externalKey, schema, table } from '../../../../schema';
+import { compileSchema } from '../schema-compiler.ts';
 
 interface MessageRecord {
   readonly id: string;

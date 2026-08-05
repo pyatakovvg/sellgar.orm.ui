@@ -1,5 +1,7 @@
-import { OperationError, TransactionError } from '../index.ts';
-import type { MutationOperation, Operation, TransactionErrorCode, TransactionOperation } from '../index.ts';
+import { OperationError } from '../operation-error.ts';
+import type { MutationOperation, Operation, TransactionOperation } from '../operation-error.ts';
+import { TransactionError } from '../transaction-error.ts';
+import type { TransactionErrorCode } from '../transaction-error.ts';
 
 describe('TransactionError', () => {
   it('задаёт stable transaction boundary messages', () => {
@@ -51,7 +53,7 @@ describe('TransactionError', () => {
       | 'transaction.delete'
     >();
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       const operation = null as unknown as MutationOperation;
 
       new TransactionError('inactive', operation);
@@ -62,7 +64,8 @@ describe('TransactionError', () => {
       new TransactionError('commit-failed', 'transaction.select');
       // @ts-expect-error inactive не описывает client transaction orchestration.
       new TransactionError('inactive', 'client.transaction');
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

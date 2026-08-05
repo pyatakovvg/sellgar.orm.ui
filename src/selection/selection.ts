@@ -1,8 +1,8 @@
-import { and, definitionOf as definitionOfExpression, Expression, tableNameOf } from '../expression/index.ts';
-import type { Definition as ExpressionDefinition } from '../expression/index.ts';
-import type { StorageKey } from '../key/index.ts';
-import { Field, Table } from '../schema/index.ts';
-import type { SchemaTable, TableRecord } from '../schema/index.ts';
+import { and, definitionOf as definitionOfExpression, Expression, tableNameOf } from '../expression';
+import type { Definition as ExpressionDefinition } from '../expression';
+import type { StorageKey } from '../key';
+import { Field, Table } from '../schema';
+import type { SchemaTable, TableRecord } from '../schema';
 
 export type Direction = 'asc' | 'desc';
 

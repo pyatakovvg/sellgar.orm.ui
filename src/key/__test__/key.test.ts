@@ -1,7 +1,7 @@
 import { IDBFactory } from 'fake-indexeddb';
 
-import { Key } from '../index.ts';
-import type { BinaryStorageKey, StorageKey } from '../index.ts';
+import { Key } from '../key.ts';
+import type { BinaryStorageKey, StorageKey } from '../key.ts';
 
 const compare = (left: StorageKey, right: StorageKey): -1 | 0 | 1 => Key.from(left).compare(Key.from(right));
 
@@ -17,7 +17,7 @@ describe('StorageKey', () => {
   });
 
   it('не включает значения вне key domain', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error boolean не является browser storage key.
       const booleanKey: StorageKey = true;
       // @ts-expect-error bigint не является browser storage key.
@@ -30,7 +30,8 @@ describe('StorageKey', () => {
       const objectKey: StorageKey = { id: 'key' };
 
       expect([booleanKey, bigintKey, nullKey, undefinedKey, objectKey]).toHaveLength(5);
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

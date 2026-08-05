@@ -1,4 +1,4 @@
-import { QueryError } from '../../error/index.ts';
+import { QueryError } from '../../error';
 import {
   and,
   between,
@@ -13,13 +13,14 @@ import {
   not,
   oneOf,
   or,
-} from '../../expression/index.ts';
-import type { BinaryStorageKey } from '../../key/index.ts';
-import { filterOf, selection, Selection } from '../../selection/index.ts';
-import { externalKey, table } from '../../schema/index.ts';
-import type { SchemaTable } from '../../schema/index.ts';
-import { plan } from '../index.ts';
-import type { Plan, ScanPolicy } from '../index.ts';
+} from '../../expression';
+import type { BinaryStorageKey } from '../../key';
+import { filterOf, selection, Selection } from '../../selection';
+import { externalKey, table } from '../../schema';
+import type { SchemaTable } from '../../schema';
+import type { Plan } from '../plan.ts';
+import { plan } from '../planner.ts';
+import type { ScanPolicy } from '../planner.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -262,12 +263,13 @@ describe('simple planner types', () => {
       >();
     }
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error scan policy имеет закрытый набор значений.
       const invalid: ScanPolicy = 'auto';
 
       expect(invalid).toBeDefined();
-    }
+    };
+    void assertTypeErrors;
   });
 });
 

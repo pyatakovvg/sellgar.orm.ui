@@ -1,8 +1,8 @@
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 
-import { MutationError } from '../../error/index.ts';
-import { schema, table } from '../../schema/index.ts';
-import { Client } from '../index.ts';
+import { MutationError } from '../../error';
+import { schema, table } from '../../schema';
+import { Client } from '../client.ts';
 
 class Item {
   readonly id!: string;

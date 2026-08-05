@@ -1,6 +1,6 @@
-import { Key } from '../../../key/index.ts';
-import type { StorageKey } from '../../../key/index.ts';
-import { definitionOf, Range } from '../../../range/index.ts';
+import { Key } from '../../../key';
+import type { StorageKey } from '../../../key';
+import { definitionOf, Range } from '../../../range';
 
 export type Compilation =
   | Readonly<{

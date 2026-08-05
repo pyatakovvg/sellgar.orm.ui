@@ -1,6 +1,6 @@
 import { createFieldValue, Field } from './field.ts';
 import type { FieldPath, FieldValue } from './field.ts';
-import type { StorageKey } from '../key/index.ts';
+import type { StorageKey } from '../key';
 
 type IsAny<Value> = 0 extends 1 & Value ? true : false;
 

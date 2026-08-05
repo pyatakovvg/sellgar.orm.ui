@@ -1,9 +1,9 @@
-import type { MutationOperation } from '../../../error/index.ts';
-import type { StorageKey } from '../../../key/index.ts';
-import type { WriteEntry } from '../../../mutation/index.ts';
-import { NativeConnection } from '../connection/index.ts';
-import { mapMutationError } from '../error/index.ts';
-import { Transaction } from '../transaction/index.ts';
+import type { MutationOperation } from '../../../error';
+import type { StorageKey } from '../../../key';
+import type { WriteEntry } from '../../../mutation';
+import { NativeConnection } from '../connection';
+import { mapMutationError } from '../error';
+import { Transaction } from '../transaction';
 
 const asNativeKey = (key: StorageKey): IDBValidKey => key as IDBValidKey;
 

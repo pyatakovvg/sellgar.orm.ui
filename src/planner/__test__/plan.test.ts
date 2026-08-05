@@ -1,6 +1,6 @@
-import { Range } from '../../range/index.ts';
-import { table } from '../../schema/index.ts';
-import type { Plan } from '../index.ts';
+import { Range } from '../../range';
+import { table } from '../../schema';
+import type { Plan } from '../plan.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -61,7 +61,7 @@ describe('Union Plan contract', () => {
   });
 
   it('не принимает one-child, empty, scan или foreign Table branches', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       const empty: Extract<MessagePlan, { type: 'empty' }> = {
         type: 'empty',
         table: messages,
@@ -105,7 +105,8 @@ describe('Union Plan contract', () => {
       expect(emptyChild).toBeDefined();
       expect(scanChild).toBeDefined();
       expect(foreignChild).toBeDefined();
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

@@ -1,9 +1,9 @@
-import type { Definition as ExpressionDefinition } from '../expression/index.ts';
-import type { StorageKey } from '../key/index.ts';
-import { Range, withinPrefix } from '../range/index.ts';
-import type { PrefixBoundary } from '../range/index.ts';
-import { CompoundKeyPath, RecordPrimaryKey } from '../schema/index.ts';
-import type { SchemaTable } from '../schema/index.ts';
+import type { Definition as ExpressionDefinition } from '../expression';
+import type { StorageKey } from '../key';
+import { Range, withinPrefix } from '../range';
+import type { PrefixBoundary } from '../range';
+import { CompoundKeyPath, RecordPrimaryKey } from '../schema';
+import type { SchemaTable } from '../schema';
 
 type Comparison = Extract<ExpressionDefinition, { type: 'comparison' }>;
 type OneSidedComparison = Extract<Comparison, { operator: 'gt' | 'gte' | 'lt' | 'lte' }>;

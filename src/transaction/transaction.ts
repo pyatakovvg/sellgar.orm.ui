@@ -1,9 +1,9 @@
-import { mapQueryError } from '../driver/indexed-db/error/index.ts';
-import { Executor as MutationExecutor, Writer } from '../driver/indexed-db/mutation/index.ts';
-import { Executor as SelectionExecutor } from '../driver/indexed-db/plan/index.ts';
-import type { MutationOperation, SelectOperation, TransactionOperation } from '../error/index.ts';
-import { TransactionError } from '../error/index.ts';
-import { createDelete, createInsert, createUpdate, createUpsert, normalizeWrite } from '../mutation/index.ts';
+import { mapQueryError } from '../driver/indexed-db/error';
+import { Executor as MutationExecutor, Writer } from '../driver/indexed-db/mutation';
+import { Executor as SelectionExecutor } from '../driver/indexed-db/plan';
+import type { MutationOperation, SelectOperation, TransactionOperation } from '../error';
+import { TransactionError } from '../error';
+import { createDelete, createInsert, createUpdate, createUpsert, normalizeWrite } from '../mutation';
 import type {
   Delete,
   Insert,
@@ -13,15 +13,15 @@ import type {
   Upsert,
   UpsertArguments,
   UpsertManyInput,
-} from '../mutation/index.ts';
-import { plan } from '../planner/index.ts';
-import { createSelect } from '../select/index.ts';
-import type { Select, SelectOptions } from '../select/index.ts';
-import type { SchemaTable } from '../schema/index.ts';
-import type { TableKey } from '../schema/index.ts';
-import { selection, sourceOf } from '../selection/index.ts';
-import type { Selection } from '../selection/index.ts';
-import { Transaction as PhysicalTransaction } from '../driver/indexed-db/transaction/index.ts';
+} from '../mutation';
+import { plan } from '../planner';
+import { createSelect } from '../select';
+import type { Select, SelectOptions } from '../select';
+import type { SchemaTable } from '../schema';
+import type { TableKey } from '../schema';
+import { selection } from '../selection';
+import type { Selection } from '../selection';
+import { Transaction as PhysicalTransaction } from '../driver/indexed-db/transaction';
 
 import type { TransactionInterface } from './transaction.interface.ts';
 
@@ -124,14 +124,14 @@ export class Transaction<AllowedTable extends SchemaTable> implements Transactio
     value: Selection<TableType>,
     options: SelectOptions | undefined,
     operation: SelectOperation,
-  ): Promise<import('../schema/index.ts').TableRecord<TableType>[]> {
+  ): Promise<import('../schema').TableRecord<TableType>[]> {
     try {
       this.assertActive(operation);
 
       const scan = options === undefined ? 'forbid' : options.scan === 'allow' ? 'allow' : undefined;
 
       if (scan === undefined) {
-        throw new TypeError('Select options are invalid');
+        return Promise.reject(new TypeError('Select options are invalid'));
       }
 
       return this.selectionExecutor

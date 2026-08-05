@@ -1,5 +1,5 @@
-import { MutationError, QueryError } from '../../../../error/index.ts';
-import { mapMutationError } from '../index.ts';
+import { MutationError, QueryError } from '../../../../error';
+import { mapMutationError } from '../mutation-error-mapper.ts';
 
 describe('mapMutationError', () => {
   it.each([

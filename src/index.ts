@@ -1,4 +1,4 @@
-export { ClientBindings, ClientInterface } from './client/index.ts';
+export { ClientBindings, ClientInterface } from './client';
 export {
   ClientError,
   ConfigurationError,
@@ -7,23 +7,23 @@ export {
   QueryError,
   TransactionError,
   UnsupportedOperationError,
-} from './error/index.ts';
+} from './error';
 export type {
   ClientErrorCode,
   MutationErrorCode,
   Operation,
   QueryErrorCode,
   TransactionErrorCode,
-} from './error/index.ts';
-export { Expression } from './expression/index.ts';
-export { and, between, eq, gt, gte, isMissing, isNull, lt, lte, not, oneOf, or } from './expression/index.ts';
-export { Delete, Insert, Update, Upsert } from './mutation/index.ts';
-export type { UpdateValues } from './mutation/index.ts';
-export { Range } from './range/index.ts';
-export type { BetweenOptions, Boundary } from './range/index.ts';
-export { Select } from './select/index.ts';
-export type { SelectOptions } from './select/index.ts';
-export { externalKey, schema, Schema, SchemaValidationError, table } from './schema/index.ts';
+} from './error';
+export { Expression } from './expression';
+export { and, between, eq, gt, gte, isMissing, isNull, lt, lte, not, oneOf, or } from './expression';
+export { Delete, Insert, Update, Upsert } from './mutation';
+export type { UpdateValues } from './mutation';
+export { Range } from './range';
+export type { BetweenOptions, Boundary } from './range';
+export { Select } from './select';
+export type { SelectOptions } from './select';
+export { externalKey, schema, Schema, SchemaValidationError, table } from './schema';
 export type {
   CompoundKeyPath,
   Index,
@@ -32,5 +32,5 @@ export type {
   SchemaValidationPath,
   SimpleKeyPath,
   Table,
-} from './schema/index.ts';
-export type { TransactionInterface } from './transaction/index.ts';
+} from './schema';
+export type { TransactionInterface } from './transaction';

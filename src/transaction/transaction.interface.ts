@@ -1,6 +1,6 @@
-import type { Delete, Insert, Update, Upsert } from '../mutation/index.ts';
-import type { Select } from '../select/index.ts';
-import type { SchemaTable } from '../schema/index.ts';
+import type { Delete, Insert, Update, Upsert } from '../mutation';
+import type { Select } from '../select';
+import type { SchemaTable } from '../schema';
 
 export interface TransactionInterface<AllowedTable extends SchemaTable> {
   select<TableType extends AllowedTable>(table: TableType): Select<TableType>;

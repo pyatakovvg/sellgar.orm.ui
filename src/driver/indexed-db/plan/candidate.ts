@@ -1,5 +1,5 @@
-import { Key } from '../../../key/index.ts';
-import type { StorageKey } from '../../../key/index.ts';
+import { Key } from '../../../key';
+import type { StorageKey } from '../../../key';
 
 export type Candidate<RecordType> = Readonly<{
   record: RecordType;

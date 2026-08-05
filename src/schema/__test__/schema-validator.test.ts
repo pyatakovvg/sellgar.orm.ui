@@ -1,6 +1,8 @@
-import { OperationError } from '../../error/index.ts';
-import { schema, Schema, SchemaValidationError, table } from '../index.ts';
-import type { SchemaTable } from '../index.ts';
+import { OperationError } from '../../error';
+import { schema, Schema } from '../schema.ts';
+import { SchemaValidationError } from '../schema-validation-error.ts';
+import { table } from '../table.ts';
+import type { SchemaTable } from '../table.ts';
 
 interface RecordValue {
   readonly id: string;

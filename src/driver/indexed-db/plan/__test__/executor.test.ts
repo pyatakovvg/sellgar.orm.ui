@@ -1,16 +1,16 @@
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 
-import { QueryError } from '../../../../error/index.ts';
-import { and, between, eq, Expression, gt, isMissing, lte, matches, oneOf, or } from '../../../../expression/index.ts';
-import { plan } from '../../../../planner/index.ts';
-import type { Plan } from '../../../../planner/index.ts';
-import { selection } from '../../../../selection/index.ts';
-import { Range, withinPrefix } from '../../../../range/index.ts';
-import { schema, table } from '../../../../schema/index.ts';
-import { NativeConnection, openConnection } from '../../connection/index.ts';
-import { createCompiledSchema, compileSchema } from '../../schema/index.ts';
-import { Writer } from '../../mutation/index.ts';
-import { Executor } from '../index.ts';
+import { QueryError } from '../../../../error';
+import { and, between, eq, Expression, gt, isMissing, lte, matches, oneOf, or } from '../../../../expression';
+import { plan } from '../../../../planner';
+import type { Plan } from '../../../../planner';
+import { selection } from '../../../../selection';
+import { Range, withinPrefix } from '../../../../range';
+import { schema, table } from '../../../../schema';
+import { NativeConnection, openConnection } from '../../connection';
+import { createCompiledSchema, compileSchema } from '../../schema';
+import { Writer } from '../../mutation';
+import { Executor } from '../executor.ts';
 
 interface MessageRecord {
   readonly id: string;
@@ -209,7 +209,7 @@ describe('IndexedDB readonly Plan Executor', () => {
     expect(transaction).not.toHaveBeenCalled();
     expect(only).not.toHaveBeenCalled();
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       const primary = source(plan(selection(messages).where(eq(messages.field('id'), 'message-1')), 'forbid'));
       const nested = intersection(primary, primary);
       const postFilter = plan(
@@ -226,7 +226,8 @@ describe('IndexedDB readonly Plan Executor', () => {
       intersection(postFilter, primary);
       // @ts-expect-error Scan не входит в BranchPlan.
       intersection(scan, primary);
-    }
+    };
+    void assertTypeErrors;
   });
 
   it('выполняет primary only plan', async () => {

@@ -1,14 +1,14 @@
-import { eq, Expression } from '../expression/index.ts';
-import type { EqualityValue } from '../expression/index.ts';
-import type { StorageKey } from '../key/index.ts';
-import { CompoundKeyPath, ExternalPrimaryKey, RecordPrimaryKey, SimpleKeyPath } from '../schema/index.ts';
+import { eq, Expression } from '../expression';
+import type { EqualityValue } from '../expression';
+import type { StorageKey } from '../key';
+import { CompoundKeyPath, ExternalPrimaryKey, RecordPrimaryKey, SimpleKeyPath } from '../schema';
 import type {
   Field,
   SchemaTable,
   TableKey,
   TableRecord,
-} from '../schema/index.ts';
-import { selection, Selection } from '../selection/index.ts';
+} from '../schema';
+import { selection, Selection } from '../selection';
 
 type PrimaryKeyOf<TableType extends SchemaTable> = TableType['primaryKey'];
 
@@ -215,10 +215,6 @@ class BoundUpsert<TableType extends SchemaTable> extends Upsert<TableType> {
     });
   }
 }
-
-type FilterState<TableType extends SchemaTable> = Readonly<{
-  selection: Selection<TableType>;
-}>;
 
 const where = <TableType extends SchemaTable, Path extends string, Value>(
   current: Selection<TableType>,

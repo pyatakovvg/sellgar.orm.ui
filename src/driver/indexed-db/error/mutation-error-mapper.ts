@@ -1,5 +1,5 @@
-import { MutationError, OperationError } from '../../../error/index.ts';
-import type { MutationOperation, MutationPhysicalErrorCode } from '../../../error/index.ts';
+import { MutationError, OperationError } from '../../../error';
+import type { MutationOperation, MutationPhysicalErrorCode } from '../../../error';
 
 const codes: Readonly<Record<string, MutationPhysicalErrorCode>> = Object.freeze({
   ConstraintError: 'constraint-violation',

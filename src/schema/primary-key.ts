@@ -1,7 +1,7 @@
 import { CompoundKeyPath, createKeyPathValue, SimpleKeyPath } from './key-path.ts';
 import type { KeyPath, KeyPathFromInput, KeyPathInput, KeyPathValue } from './key-path.ts';
 import type { FieldValue } from './field.ts';
-import type { StorageKey } from '../key/index.ts';
+import type { StorageKey } from '../key';
 
 type PrimaryKeyGeneration = 'assigned' | 'autoIncrement';
 type CompoundPaths = readonly [string, string, ...string[]];

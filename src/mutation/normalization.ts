@@ -1,5 +1,5 @@
-import type { StorageKey } from '../key/index.ts';
-import type { SchemaTable } from '../schema/index.ts';
+import type { StorageKey } from '../key';
+import type { SchemaTable } from '../schema';
 import type { WriteEntry } from './mutation.ts';
 
 export type NormalizedWrite = Readonly<{

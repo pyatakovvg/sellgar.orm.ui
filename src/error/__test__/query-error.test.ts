@@ -1,5 +1,6 @@
-import { OperationError, QueryError } from '../index.ts';
-import type { QueryErrorCode } from '../index.ts';
+import { OperationError } from '../operation-error.ts';
+import { QueryError } from '../query-error.ts';
+import type { QueryErrorCode } from '../query-error.ts';
 
 describe('QueryError', () => {
   it('задаёт stable boundary errors без cause', () => {
@@ -33,7 +34,7 @@ describe('QueryError', () => {
     expect(aborted.cause).toBe(cause);
     expect(failed.cause).toBe(cause);
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error physical read failure требует options.
       new QueryError('operation-failed', 'select.getRawMany');
       // @ts-expect-error boundary error не принимает physical options.
@@ -42,6 +43,7 @@ describe('QueryError', () => {
       });
       // @ts-expect-error QueryError принадлежит операциям выборки и фильтруемым mutations.
       new QueryError('scan-required', 'client.select');
-    }
+    };
+    void assertTypeErrors;
   });
 });

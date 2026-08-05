@@ -1,5 +1,6 @@
-import { schema, Schema, table } from '../index.ts';
-import type { SchemaTables, SchemaTableUnion } from '../index.ts';
+import { schema, Schema } from '../schema.ts';
+import type { SchemaTables, SchemaTableUnion } from '../schema.ts';
+import { table } from '../table.ts';
 
 interface ChatRecord {
   readonly id: string;
@@ -100,7 +101,7 @@ describe('Schema', () => {
     const dynamicTables = [chats];
     const dynamicVersion: number = 1;
 
-    if (false) {
+    const assertTypeErrors = (): void => {
       schema({
         name: 'empty-database',
         version: 1,
@@ -125,7 +126,8 @@ describe('Schema', () => {
         // @ts-expect-error обычный array не доказывает non-empty tuple.
         tables: dynamicTables,
       });
-    }
+    };
+    void assertTypeErrors;
 
     expect([dynamicTables, dynamicVersion]).toHaveLength(2);
   });

@@ -1,9 +1,10 @@
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 
-import { ClientError } from '../../error/index.ts';
-import type { Select } from '../../select/index.ts';
-import { schema, Schema, table } from '../../schema/index.ts';
-import { Client, ClientInterface } from '../index.ts';
+import { ClientError } from '../../error';
+import type { Select } from '../../select';
+import { schema, Schema, table } from '../../schema';
+import { ClientInterface } from '../client.interface.ts';
+import { Client } from '../client.ts';
 
 interface RecordValue {
   readonly id: string;

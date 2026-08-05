@@ -1,5 +1,5 @@
-import { OperationError, QueryError } from '../../../error/index.ts';
-import type { QueryOperation } from '../../../error/index.ts';
+import { OperationError, QueryError } from '../../../error';
+import type { QueryOperation } from '../../../error';
 
 const nameOf = (cause: unknown): string | undefined => {
   if (typeof cause !== 'object' || cause === null || !('name' in cause)) {

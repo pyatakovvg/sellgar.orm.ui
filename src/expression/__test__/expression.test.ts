@@ -1,6 +1,7 @@
-import { table } from '../../schema/index.ts';
-import { between, definitionOf, eq, Expression, gt, gte, isMissing, isNull, lt, lte, oneOf } from '../index.ts';
-import type { BetweenOptions } from '../../range/index.ts';
+import { table } from '../../schema';
+import { definitionOf, Expression } from '../expression.ts';
+import { between, eq, gt, gte, isMissing, isNull, lt, lte, oneOf } from '../operators.ts';
+import type { BetweenOptions } from '../../range';
 import type { Input } from '../value.ts';
 
 interface RecordValue {
@@ -59,7 +60,7 @@ describe('comparison Expression types', () => {
   });
 
   it('отклоняет incompatible values и fields compile-time', () => {
-    if (false) {
+    const assertTypeErrors = (): void => {
       // @ts-expect-error value не входит в literal union field.
       eq(messages.field('status'), 'unknown');
       // @ts-expect-error wrong field value type.
@@ -95,9 +96,8 @@ describe('comparison Expression types', () => {
       // @ts-expect-error unknown не доказывает missing field.
       isMissing(messages.field('uncertain'));
 
-      const foreign = eq(archive.field('id'), 'archive-1');
       // @ts-expect-error Expression другой table несовместим.
-      const local: Expression<'messages', RecordValue> = foreign;
+      const local: Expression<'messages', RecordValue> = eq(archive.field('id'), 'archive-1');
       // @ts-expect-error Expression нельзя подделать структурно.
       const forged: Expression<'messages', RecordValue> = {
         kind: 'comparison',
@@ -114,7 +114,8 @@ describe('comparison Expression types', () => {
       expect(local).toBeDefined();
       expect(forged).toBeDefined();
       expect(ForgedExpression).toBeDefined();
-    }
+    };
+    void assertTypeErrors;
 
     expect(true).toBe(true);
   });

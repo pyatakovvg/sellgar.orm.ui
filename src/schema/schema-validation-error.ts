@@ -1,4 +1,4 @@
-import { OperationError } from '../error/index.ts';
+import { OperationError } from '../error';
 
 export type SchemaValidationCode =
   | 'invalid-schema'

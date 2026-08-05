@@ -1,5 +1,5 @@
-import { createCompiledSchema } from '../index.ts';
-import type { CompiledIndex, CompiledSchema, CompiledStore } from '../index.ts';
+import { createCompiledSchema } from '../compiled-schema.ts';
+import type { CompiledIndex, CompiledSchema, CompiledStore } from '../compiled-schema.ts';
 
 describe('CompiledSchema', () => {
   it('создаёт immutable physical schema value', () => {

@@ -1,5 +1,5 @@
-import { Schema } from '../../../schema/index.ts';
-import type { KeyPath, PrimaryKey, SchemaTable, TableIndex } from '../../../schema/index.ts';
+import { Schema } from '../../../schema';
+import type { KeyPath, PrimaryKey, SchemaTable, TableIndex } from '../../../schema';
 
 import { createCompiledSchema } from './compiled-schema.ts';
 import type { CompiledIndex, CompiledKeyPath, CompiledSchema, CompiledStore } from './compiled-schema.ts';
