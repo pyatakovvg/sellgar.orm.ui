@@ -1,4 +1,4 @@
-import { Injectable } from '@sellgar/app';
+import { Injectable } from '@sellgar/app-v2';
 
 import { NativeConnection, openConnection } from '../driver/indexed-db/connection';
 import { Executor as MutationExecutor, Writer } from '../driver/indexed-db/mutation';

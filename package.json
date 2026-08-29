@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "@sellgar/app": "0.0.1"
+    "@sellgar/app-v2": "0.0.1"
   },
   "devDependencies": {
     "fake-indexeddb": "6.2.5"
