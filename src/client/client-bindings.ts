@@ -1,5 +1,5 @@
-import { BindingModuleInterface } from '@sellgar/app-v2';
-import type { BindingRegistryInterface } from '@sellgar/app-v2';
+import { BindingModuleInterface } from '@sellgar/app';
+import type { BindingRegistryInterface } from '@sellgar/app';
 
 import { ClientInterface } from './client.interface.ts';
 import { Client } from './client.ts';
