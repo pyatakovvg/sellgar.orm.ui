@@ -6,6 +6,7 @@
     "emitDeclarationOnly": true,
     "declarationDir": "./types",
     "rootDir": "./src",
+    "types": ["reflect-metadata", "vitest/globals"],
     "isolatedModules": false
   },
   "exclude": ["node_modules"],
